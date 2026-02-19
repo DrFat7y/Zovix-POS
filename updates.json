@@ -17,7 +17,7 @@
     "owner": {
       "android": {
         "version": "1.0.1",
-        "force_update": false,
+        "force_update": true,
         "message": "يتوفر تحديث جديد لتطبيق المالك (Zovix POS) بتصميم محسن للتقارير.",
         "download_url": "https://github.com/DrFat7y/EZ-Store-POS/releases/download/EZ/Owner-Reports-1.0.1.apk"
       }
@@ -25,4 +25,5 @@
   }
 
 }
+
 
