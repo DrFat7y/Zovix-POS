@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شروط الخدمة | Zovix POS</title>
+    <link rel="icon" type="image/png" href="ZovixPOS.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A6499D',
+                        secondary: '#8E3E87',
+                        dark: '#121212',
+                        'dark-card': '#1e1e1e'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .dark .glass {
+            background: rgba(18, 18, 18, 0.85);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, rgba(166, 73, 157, 0.15) 0%, transparent 70%);
+        }
+
+        .dark .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, rgba(166, 73, 157, 0.25) 0%, transparent 70%);
+        }
+        
+        .legal-content h2 {
+            color: #A6499D;
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legal-content p, .legal-content li {
+            color: #4b5563;
+            line-height: 2;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .dark .legal-content p, .dark .legal-content li {
+            color: #9ca3af;
+        }
+
+        .legal-content ul {
+            list-style-type: disc;
+            padding-right: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #A6499D; border-radius: 10px; }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-900 dark:bg-dark dark:text-gray-100 transition-colors duration-300">
+
+    <nav class="fixed top-0 w-full z-[1000] glass border-b border-gray-200/50 dark:border-gray-800/50">
+        <div class="container mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4">
+                <img src="ZovixPOS.png" alt="Zovix POS Logo" class="h-16 w-auto object-contain hover:scale-105 transition-transform">
+                <div class="hidden sm:block">
+                    <span class="text-2xl font-black text-primary tracking-tighter block leading-none">ZOVIX POS</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="font-bold text-slate-500 hover:text-primary dark:text-gray-400 ml-4 transition-colors">العودة للرئيسية <i class="fas fa-arrow-left mr-1"></i></a>
+                <button id="themeToggle" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-primary hover:scale-110 transition-transform flex items-center justify-center">
+                    <i class="fas fa-moon dark:hidden text-lg"></i>
+                    <i class="fas fa-sun hidden dark:block text-yellow-500 text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 hero-gradient border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">شروط الخدمة واتفاقية الاستخدام ⚖️</h1>
+            <p class="text-lg text-slate-500 dark:text-gray-400 font-bold">آخر تحديث: فبراير 2026</p>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-white dark:bg-dark-card p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 legal-content">
+                
+                <p class="text-xl font-bold text-center mb-8 pb-8 border-b border-gray-100 dark:border-gray-800">
+                    أهلاً بك في Zovix POS. يُرجى قراءة هذه الاتفاقية بعناية قبل البدء في استخدام النظام. إن قيامك بإنشاء حساب أو تسجيل الدخول يُعد موافقة صريحة وقانونية منك على كافة البنود الواردة أدناه.
+                </p>
+
+                <h2><i class="fas fa-info-circle"></i> 1. التمهيد وطبيعة الخدمة</h2>
+                <p>نظام Zovix POS هو منصة تقنية (SaaS) موجهة لأصحاب المحلات التجارية لإدارة المبيعات والمخزون. يعمل النظام بتقنية "أوفلاين أولاً" (Offline-First) مع مزامنة سحابية دورية لحفظ البيانات وتوفير إمكانية متابعة المالك من أي مكان.</p>
+
+                <h2><i class="fas fa-copyright"></i> 2. ترخيص الاستخدام والملكية الفكرية</h2>
+                <ul>
+                    <li><strong>الترخيص:</strong> تمنحك منصة Zovix ترخيصاً محدوداً، غير حصري، وغير قابل للتنازل لاستخدام النظام مقابل رسوم الاشتراك المتفق عليها.</li>
+                    <li><strong>الملكية الفكرية:</strong> جميع حقوق الكود البرمجي (Source Code)، التصاميم، الواجهات، والعلامة التجارية هي ملكية حصرية لمنصة Zovix. يُمنع منعاً باتاً استنساخ، تعديل، أو إعادة بيع أي جزء من النظام.</li>
+                </ul>
+
+                <h2><i class="fas fa-money-bill-wave"></i> 3. خطط الأسعار والاشتراكات</h2>
+                <ul>
+                    <li><strong>نظام الدفع:</strong> الخدمة تعمل بنظام الدفع المسبق (Pre-paid) عبر الوسائل المتاحة (مثل فودافون كاش).</li>
+                    <li><strong>تعديل الأسعار والمميزات:</strong> نحتفظ بالحق في تعديل خطط الأسعار أو سحب/تعديل بعض مميزات النظام في أي وقت لتطوير الخدمة.</li>
+                    <li><strong>التزامنا:</strong> في حال تطبيق أي زيادة في الأسعار على المشتركين الحاليين، نلتزم بإبلاغك قبل (30 يوماً) على الأقل من تاريخ سريان السعر الجديد.</li>
+                    <li><strong>سياسة الاسترداد:</strong> المبالغ المدفوعة غير قابلة للاسترداد بعد تفعيل الاشتراك، نظراً لبدء استهلاك الموارد السحابية ورخصة التشغيل.</li>
+                </ul>
+
+                <h2><i class="fas fa-shield-alt"></i> 4. سياسة التشغيل والأمان (Anti-Tamper)</h2>
+                <ul>
+                    <li><strong>أمان الوقت:</strong> يعتمد النظام على توقيت موثوق لضمان صحة التقارير والاشتراكات. يُمنع التلاعب بتوقيت الجهاز يدوياً.</li>
+                    <li><strong>الحماية:</strong> في حال اكتشاف النظام لأي محاولة تلاعب في الساعة المحلية للجهاز (Rollback) بهدف تخطي مدة الاشتراك، يحتفظ النظام بالحق في غلق الوصول فوراً لحماية نزاهة البيانات.</li>
+                </ul>
+
+                <h2><i class="fas fa-exclamation-triangle"></i> 5. حدود المسؤولية</h2>
+                <ul>
+                    <li><strong>دقة البيانات:</strong> النظام أداة مساعدة؛ وبالتالي فإن المشترك هو المسؤول الأول والأخير عن مراجعة دقة البيانات المالية، الأسعار، وكميات المخزون المدخلة.</li>
+                    <li><strong>الأعطال:</strong> لا تتحمل منصة Zovix المسؤولية عن أي خسائر ناتجة عن تعطل أجهزة المشترك، أو انقطاع خدمة الإنترنت لديه، أو أخطاء الاستخدام البشري.</li>
+                </ul>
+
+                <h2><i class="fas fa-user-shield"></i> 6. الحفاظ على سرية وحذف البيانات</h2>
+                <ul>
+                    <li><strong>الخصوصية:</strong> نلتزم التزاماً تاماً بالحفاظ على سرية بيانات متجرك وعملائك. بياناتك ملك لك وحدك، ولن يتم بيعها أو مشاركتها مع أي طرف ثالث لأغراض إعلانية.</li>
+                    <li><strong>انتهاء الاشتراك:</strong> عند انتهاء مدة الاشتراك وعدم التجديد، يظل بإمكانك الوصول لبياناتك محلياً على جهازك، ولكن قد يتم حذف النسخة الاحتياطية السحابية من سيرفراتنا بعد مرور (30 يوماً) لتوفير المساحة التقنية.</li>
+                </ul>
+
+                <h2><i class="fas fa-sync-alt"></i> 7. تعديل الشروط والأحكام</h2>
+                <ul>
+                    <li><strong>حق التعديل:</strong> يحق لمنصة Zovix POS تغيير أو تحديث هذه الشروط في أي وقت لمواكبة التطورات القانونية أو التقنية.</li>
+                    <li><strong>الإشعار والموافقة:</strong> سيتم إرسال إشعار للمستخدمين بأي تغييرات جوهرية. ويُعد استمرارك في استخدام أي جزء من النظام (التطبيق أو لوحة الإدارة) بعد هذا الإشعار بمثابة موافقة قانونية تامة ونهائية منك على الشروط الجديدة.</li>
+                </ul>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-12 pb-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-4 mb-6">
+                <img src="ZovixPOS.png" alt="Zovix Logo" class="h-12 object-contain">
+                <span class="text-2xl font-black text-primary tracking-tighter">ZOVIX POS</span>
+            </div>
+            <p class="text-gray-500 font-bold text-sm"> 2026 جميع الحقوق محفوظة لـ Zovix POS. تقنية إدارة المستقبل بتصميم اليوم.</p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+    </script>
+</body>
+</html>

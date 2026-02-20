@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية | Zovix POS</title>
+    <link rel="icon" type="image/png" href="ZovixPOS.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A6499D',
+                        secondary: '#8E3E87',
+                        dark: '#121212',
+                        'dark-card': '#1e1e1e'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .dark .glass {
+            background: rgba(18, 18, 18, 0.85);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, rgba(166, 73, 157, 0.15) 0%, transparent 70%);
+        }
+
+        .dark .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, rgba(166, 73, 157, 0.25) 0%, transparent 70%);
+        }
+        
+        .legal-content h2 {
+            color: #A6499D;
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legal-content p, .legal-content li {
+            color: #4b5563;
+            line-height: 2;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .dark .legal-content p, .dark .legal-content li {
+            color: #9ca3af;
+        }
+
+        .legal-content ul {
+            list-style-type: disc;
+            padding-right: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #A6499D; border-radius: 10px; }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-900 dark:bg-dark dark:text-gray-100 transition-colors duration-300">
+
+    <nav class="fixed top-0 w-full z-[1000] glass border-b border-gray-200/50 dark:border-gray-800/50">
+        <div class="container mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4">
+                <img src="ZovixPOS.png" alt="Zovix POS Logo" class="h-16 w-auto object-contain hover:scale-105 transition-transform">
+                <div class="hidden sm:block">
+                    <span class="text-2xl font-black text-primary tracking-tighter block leading-none">ZOVIX POS</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="font-bold text-slate-500 hover:text-primary dark:text-gray-400 ml-4 transition-colors">العودة للرئيسية <i class="fas fa-arrow-left mr-1"></i></a>
+                <button id="themeToggle" class="w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-primary hover:scale-110 transition-transform flex items-center justify-center">
+                    <i class="fas fa-moon dark:hidden text-lg"></i>
+                    <i class="fas fa-sun hidden dark:block text-yellow-500 text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-12 hero-gradient border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">سياسة الخصوصية 🔒</h1>
+            <p class="text-lg text-slate-500 dark:text-gray-400 font-bold">حماية بياناتك هي أولويتنا</p>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-white dark:bg-dark-card p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-800 legal-content">
+                
+                <p class="text-xl font-bold text-center mb-8 pb-8 border-b border-gray-100 dark:border-gray-800">
+                    في Zovix POS، ندرك أن بيانات متجرك هي أثمن ما تملك. توضح هذه الوثيقة بشفافية كيف نتعامل مع بياناتك وكيف نحميها.
+                </p>
+
+                <h2><i class="fas fa-database"></i> 1. البيانات التي نجمعها</h2>
+                <p>لضمان عمل النظام بكفاءة، نقوم بمعالجة البيانات التالية:</p>
+                <ul>
+                    <li><strong>بيانات المتجر:</strong> (اسم المتجر، رقم الهاتف، العنوان، كلمة المرور).</li>
+                    <li><strong>بيانات العمليات:</strong> (حركة المبيعات، الفواتير، المصروفات، المرتجعات).</li>
+                    <li><strong>بيانات المخزون:</strong> (أسماء المنتجات، الكميات، الأسعار).</li>
+                    <li><strong>بيانات المستخدمين:</strong> (أسماء الموظفين وصلاحياتهم).</li>
+                </ul>
+
+                <h2><i class="fas fa-server"></i> 2. أين وكيف تُخزن بياناتك؟</h2>
+                <p>يتبع النظام بنية تخزين هجينة لضمان الأمان والسرعة:</p>
+                <ul>
+                    <li><strong>التخزين المحلي (Local Storage):</strong> تُخزن نسخة كاملة من بياناتك العملياتية على ذاكرة متصفحك أو جهازك مباشرة. هذا يضمن عملك "أوفلاين" بسرعة فائقة واستقلالية تامة.</li>
+                    <li><strong>التخزين السحابي (Firebase):</strong> يتم رفع نسخة مشفرة ومؤمنة من البيانات إلى خوادم Google Firebase.</li>
+                </ul>
+                <p><strong>الهدف من التخزين السحابي هو:</strong></p>
+                <ul>
+                    <li>توفير نسخة احترازية (Backup) في حال ضياع جهازك.</li>
+                    <li>تمكينك كمالك للمتجر من متابعة التقارير لحظياً عبر "تطبيق المالك" من أي مكان في العالم.</li>
+                </ul>
+
+                <h2><i class="fas fa-handshake-slash"></i> 3. مشاركة البيانات مع أطراف ثالثة</h2>
+                <p>نحن لا نبيع، ولا نؤجر، ولا نشارك بياناتك مع أي طرف ثالث. بياناتك تُستخدم فقط لغرض تشغيل النظام الخاص بك وتوفير الدعم الفني اللازم لك عند الطلب.</p>
+
+                <h2><i class="fas fa-lock"></i> 4. حماية البيانات</h2>
+                <p>نحن نستخدم تقنيات حديثة لحماية معلوماتك:</p>
+                <ul>
+                    <li><strong>التشفير:</strong> يتم نقل البيانات بين جهازك والسحابة عبر بروتوكولات مؤمنة (SSL/TLS).</li>
+                    <li><strong>التمويه (Obfuscation):</strong> نستخدم تقنيات برمجية لتمويه البيانات الحساسة المخزنة محلياً لمنع الوصول غير المصرح به من داخل الجهاز.</li>
+                    <li><strong>قواعد الأمان (Firestore Rules):</strong> نطبق قواعد وصول صارمة تمنع أي مستخدم من الوصول لبيانات متجر آخر نهائياً.</li>
+                </ul>
+
+                <h2><i class="fas fa-user-cog"></i> 5. حق الوصول والتحكم</h2>
+                <p>لك الحق الكامل في:</p>
+                <ul>
+                    <li>تصدير بياناتك (المنتجات، المبيعات) عبر تقارير Excel و PDF في أي وقت.</li>
+                    <li>تعديل بيانات المستخدمين أو حذفها من لوحة الإدارة الخاصة بك.</li>
+                </ul>
+
+                <h2><i class="fas fa-check-double"></i> 6. الموافقة والتحديثات</h2>
+                <p>باستخدامك لنظام Zovix، أنت توافق على جمع ومعالجة بياناتك وفقاً لهذه السياسة. قد نقوم بتحديث هذه السياسة دورياً لتحسين معايير الأمان، وسنقوم بإطلاعك على أي تغييرات هامة.</p>
+
+                <div class="mt-10 p-6 bg-primary/10 rounded-2xl border border-primary/20 text-center">
+                    <i class="fab fa-whatsapp text-3xl text-green-500 mb-2"></i>
+                    <p class="font-bold mb-0">لأية استفسارات تتعلق بخصوصية بياناتك، يمكنك التواصل مع الدعم الفني المباشر عبر زر الواتساب المسجل في النظام.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-12 pb-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-4 mb-6">
+                <img src="ZovixPOS.png" alt="Zovix Logo" class="h-12 object-contain">
+                <span class="text-2xl font-black text-primary tracking-tighter">ZOVIX POS</span>
+            </div>
+            <p class="text-gray-500 font-bold text-sm"> 2026 جميع الحقوق محفوظة لـ Zovix POS. تقنية إدارة المستقبل بتصميم اليوم.</p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+    </script>
+</body>
+</html>
