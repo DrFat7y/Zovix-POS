@@ -2,13 +2,13 @@
   "apps": {
     "cashier": {
       "android": {
-        "version": "1.0.0",
+        "version": "1.0.1",
         "force_update": true,
         "message": "تمت إضافة ميزات جديدة وإصلاح أخطاء سابقة. يرجى التحديث الآن لضمان استقرار المبيعات.",
         "download_url": "https://github.com/DrFat7y/EZ-Store-POS/releases/download/EZ/Cashier-1.0.2.apk"
       },
       "windows": {
-        "version": "1.0.0",
+        "version": "1.0.1",
         "force_update": true,
         "message": "تحديث هام لنظام الويندوز لضمان استقرار العمليات.",
         "download_url": "https://github.com/DrFat7y/EZ-Store-POS/releases/download/EZ/EZ-Store-POS-Setup-1.0.2.exe"
@@ -25,6 +25,7 @@
   }
 
 }
+
 
 
 
