@@ -5,13 +5,13 @@
         "version": "1.0.0",
         "force_update": false,
         "message": "تمت إضافة ميزات جديدة وإصلاح أخطاء سابقة. يرجى التحديث الآن لضمان استقرار المبيعات.",
-        "download_url": "https://github.com/DrFat7y/EZ-Store-POS/releases/download/EZ/Cashier-1.0.2.apk"
+        "download_url": "https://github.com/DrFat7y/Zovix-POS/releases/download/Zovix/Zovix.POS.apk"
       },
       "windows": {
         "version": "1.0.0",
         "force_update": true,
         "message": "تحديث هام لنظام الويندوز لضمان استقرار العمليات.",
-        "download_url": "https://github.com/DrFat7y/EZ-Store-POS/releases/download/EZ/EZ-Store-POS-Setup-1.0.2.exe"
+        "download_url": "https://github.com/DrFat7y/Zovix-POS/releases/download/Zovix/Zovix.POS.Setup.1.0.0.exe"
       }
     },
     "owner": {
@@ -19,12 +19,13 @@
         "version": "1.0.0",
         "force_update": true,
         "message": "يتوفر تحديث جديد لتطبيق المالك (Zovix POS) بتصميم محسن للتقارير.",
-        "download_url": "https://github.com/DrFat7y/EZ-Store-POS/releases/download/EZ/Owner-Reports-1.0.1.apk"
+        "download_url": "https://github.com/DrFat7y/Zovix-POS/releases/download/Zovix/Zovix.Owner.apk"
       }
     }
   }
 
 }
+
 
 
 
