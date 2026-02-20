@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zovix POS | نظام إدارة المبيعات للأزياء والمحلات</title>
-    
+
+    <meta name="description"
+        content="نظام Zovix المُصمم خصيصاً ليناسب رقيّ محلات الملابس. سرعة في الكاشير، تقارير أرباح لحظية، ومزامنة سحابية بين يديك.">
+
     <meta property="og:title" content="Zovix POS | نظام إدارة المبيعات للأزياء والمحلات">
-    <meta property="og:description" content="نظام Zovix المُصمم خصيصاً ليناسب رقيّ محلات الملابس. سرعة في الكاشير، تقارير أرباح لحظية، ومزامنة سحابية بين يديك.">
+    <meta property="og:description"
+        content="نظام Zovix المُصمم خصيصاً ليناسب رقيّ محلات الملابس. سرعة في الكاشير، تقارير أرباح لحظية، ومزامنة سحابية بين يديك.">
     <meta property="og:image" content="https://zovixpos.store/ZovixPOS.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://zovixpos.store/">
     <meta property="og:type" content="website">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Zovix POS | نظام إدارة المبيعات">
     <meta name="twitter:description" content="حول متجر أزيائك إلى إمبراطورية ذكية مع Zovix POS.">
@@ -81,6 +87,7 @@
         .premium-text-gradient {
             background: linear-gradient(135deg, #A6499D 0%, #ff69b4 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -90,15 +97,16 @@
             gap: 20px;
             justify-content: center;
             align-items: stretch;
-            padding: 20px 0;
+            padding: 40px 10px;
             flex-wrap: wrap;
             direction: rtl;
+            width: 100%;
         }
 
         .pricing-card {
             flex: 1;
             min-width: 280px;
-            max-width: 350px;
+            max-width: 100%;
             background: #fff;
             border-radius: 20px;
             padding: 30px 20px;
@@ -123,9 +131,17 @@
             z-index: 500 !important;
         }
 
-        .pricing-card.bronze-glow:hover { box-shadow: 0 0 25px rgba(205, 127, 50, 0.4); }
-        .pricing-card.gold-glow:hover { box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); }
-        .pricing-card.diamond-glow:hover { box-shadow: 0 0 25px rgba(163, 73, 255, 0.5); }
+        .pricing-card.bronze-glow:hover {
+            box-shadow: 0 0 25px rgba(205, 127, 50, 0.4);
+        }
+
+        .pricing-card.gold-glow:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .pricing-card.diamond-glow:hover {
+            box-shadow: 0 0 25px rgba(163, 73, 255, 0.5);
+        }
 
         .pricing-card.featured {
             transform: scale(1.05);
@@ -134,7 +150,9 @@
             z-index: 2;
         }
 
-        .pricing-card.featured:hover { transform: scale(1.05) translateY(-10px); }
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
 
         .pricing-badge {
             position: absolute;
@@ -165,81 +183,285 @@
         }
 
         @keyframes badge-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
         }
 
-        .tier-header { text-align: center; margin-bottom: 25px; }
-        .tier-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
-        .dark .tier-name { color: #fff; }
-        .price-value { font-size: 2rem; font-weight: 900; color: #1a1a1a; }
-        .dark .price-value { color: #fff; }
-        .price-sub { font-size: 0.85rem; color: #888; display: block; margin-top: 2px; }
-        .price-yearly { font-size: 0.95rem; color: #666; display: block; margin-top: 6px; font-weight: 500; }
-        .dark .price-yearly { color: #aaa; }
+        .tier-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
 
-        .feature-list { list-style: none; padding: 0; flex: 1; margin: 15px 0; }
-        .feature-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 0.95rem; color: #444; line-height: 1.5; }
-        .dark .feature-item { color: #ccc; }
-        .feature-item i.check-icon { color: #2ecc71; font-size: 1rem; margin-top: 4px; }
-        .feature-item.disabled-feature { opacity: 0.5; }
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
 
-        .tooltip-container { position: relative; display: inline-block; cursor: help; margin-top: 3px; }
-        .tooltip-container .info-icon { color: var(--primary); font-size: 0.8rem; opacity: 0.6; transition: opacity 0.3s; }
-        .tooltip-container:hover .info-icon { opacity: 1; }
+        .dark .tier-name {
+            color: #fff;
+        }
+
+        .price-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #1a1a1a;
+        }
+
+        .dark .price-value {
+            color: #fff;
+        }
+
+        .price-sub {
+            font-size: 0.85rem;
+            color: #888;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .price-yearly {
+            font-size: 0.95rem;
+            color: #666;
+            display: block;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .dark .price-yearly {
+            color: #aaa;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            flex: 1;
+            margin: 15px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .dark .feature-item {
+            color: #ccc;
+        }
+
+        .feature-item i.check-icon {
+            color: #2ecc71;
+            font-size: 1rem;
+            margin-top: 4px;
+        }
+
+        .feature-item.disabled-feature {
+            opacity: 0.5;
+        }
+
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            margin-top: 3px;
+        }
+
+        .tooltip-container .info-icon {
+            color: var(--primary);
+            font-size: 0.8rem;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip-container:hover .info-icon {
+            opacity: 1;
+        }
 
         .tooltip-box {
-            visibility: hidden; width: 200px; background-color: var(--primary); color: #fff; text-align: right;
-            border-radius: 8px; padding: 10px; position: absolute; z-index: 100; bottom: 125%; left: 50%;
-            margin-left: -100px; opacity: 0; transition: opacity 0.3s, transform 0.3s; font-size: 0.8rem;
-            line-height: 1.4; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transform: translateY(10px); pointer-events: none;
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--primary);
+            color: #fff;
+            text-align: right;
+            border-radius: 8px;
+            padding: 10px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(10px);
+            pointer-events: none;
         }
+
         .tooltip-box::after {
-            content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px;
-            border-width: 5px; border-style: solid; border-color: var(--primary) transparent transparent transparent;
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--primary) transparent transparent transparent;
         }
-        .tooltip-container:hover .tooltip-box { visibility: visible; opacity: 1; transform: translateY(0); }
-        .dark .tooltip-box { background-color: #333; border: 1px solid var(--primary); }
+
+        .tooltip-container:hover .tooltip-box {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dark .tooltip-box {
+            background-color: #333;
+            border: 1px solid var(--primary);
+        }
 
         .pricing-cta {
-            width: 100%; padding: 14px; border-radius: 12px; font-weight: 800; font-size: 1rem;
-            cursor: pointer; transition: all 0.3s; text-decoration: none; display: flex;
-            align-items: center; justify-content: center; gap: 8px; margin-top: 15px; border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            border: none;
         }
-        .cta-bronze { background: transparent; color: #cd7f32; border: 2px solid #cd7f32; }
-        .dark .cta-bronze { color: #e1a975; border-color: #e1a975; }
-        
-        .cta-gold { background: linear-gradient(135deg, #ffd700, #f59e0b); color: #000; position: relative; overflow: hidden; }
+
+        .cta-bronze {
+            background: transparent;
+            color: #cd7f32;
+            border: 2px solid #cd7f32;
+        }
+
+        .dark .cta-bronze {
+            color: #e1a975;
+            border-color: #e1a975;
+        }
+
+        .cta-gold {
+            background: linear-gradient(135deg, #ffd700, #f59e0b);
+            color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
         .cta-gold::after {
-            content: ''; position: absolute; top: -50%; left: -150%; width: 200%; height: 200%;
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 200%;
+            height: 200%;
             background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-            transform: rotate(45deg); animation: cta-shimmer 3s infinite;
+            transform: rotate(45deg);
+            animation: cta-shimmer 3s infinite;
         }
-        @keyframes cta-shimmer { 0% { left: -150%; } 50% { left: 150%; } 100% { left: 150%; } }
-        
-        .cta-diamond { background: #a349ff; color: #fff; }
-        .pricing-cta:hover { transform: translateY(-3px); filter: brightness(1.1); }
-        .social-proof { display: block; font-size: 0.75rem; color: #888; margin-top: 8px; text-align: center; font-weight: bold; }
+
+        @keyframes cta-shimmer {
+            0% {
+                left: -150%;
+            }
+
+            50% {
+                left: 150%;
+            }
+
+            100% {
+                left: 150%;
+            }
+        }
+
+        .cta-diamond {
+            background: #a349ff;
+            color: #fff;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        .social-proof {
+            display: block;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
         /* Psychological Animations for Downloads */
-        .download-btn-pulse { animation: dl-pulse 2s infinite; }
+        .download-btn-pulse {
+            animation: dl-pulse 2s infinite;
+        }
+
         @keyframes dl-pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(166, 73, 157, 0.6); }
-            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(166, 73, 157, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(166, 73, 157, 0); }
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(166, 73, 157, 0.6);
+            }
+
+            70% {
+                transform: scale(1.03);
+                box-shadow: 0 0 0 15px rgba(166, 73, 157, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(166, 73, 157, 0);
+            }
         }
 
         /* Floating WhatsApp */
-        .pulse-green { animation: pulse-green-animation 2s infinite; }
-        @keyframes pulse-green-animation {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.8); }
-            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        .pulse-green {
+            animation: pulse-green-animation 2s infinite;
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-thumb { background: #A6499D; border-radius: 10px; }
+        @keyframes pulse-green-animation {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.8);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #A6499D;
+            border-radius: 10px;
+        }
     </style>
 </head>
 
@@ -247,23 +469,30 @@
 
     <nav class="fixed top-0 w-full z-[1000] glass border-b border-gray-200/50 dark:border-gray-800/50">
         <div class="container mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <img src="ZovixPOS.png" alt="Zovix POS Logo" class="h-16 md:h-24 w-auto object-contain hover:scale-105 transition-transform">
+            <div class="flex items-center gap-2 md:gap-4">
+                <img src="ZovixPOS.png" alt="Zovix POS Logo"
+                    class="h-12 md:h-24 w-auto object-contain hover:scale-105 transition-transform">
                 <div class="hidden sm:block">
-                    <span class="text-2xl md:text-3xl font-black text-primary tracking-tighter block leading-none">ZOVIX POS</span>
-                    <span class="text-[10px] md:text-xs font-bold text-secondary uppercase tracking-[3px]">Elite Retail System</span>
+                    <span class="text-xl md:text-3xl font-black text-primary tracking-tighter block leading-none">ZOVIX
+                        POS</span>
+                    <span
+                        class="text-[8px] md:text-xs font-bold text-secondary uppercase tracking-[2px] md:tracking-[3px]">Elite
+                        Retail System</span>
                 </div>
             </div>
 
             <div class="hidden lg:flex items-center gap-8 font-bold text-lg">
                 <a href="#features" class="hover:text-primary transition-colors">المميزات</a>
-                <a href="#downloads" class="hover:text-primary transition-colors text-primary border-b-2 border-primary pb-1">التحميل مجاناً</a>
+                <a href="#downloads"
+                    class="hover:text-primary transition-colors text-primary border-b-2 border-primary pb-1">التحميل
+                    مجاناً</a>
                 <a href="#pricing" class="hover:text-primary transition-colors">الباقات</a>
                 <a href="#tutorials" class="hover:text-primary transition-colors">الشروحات</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <button id="themeToggle" class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gray-100 dark:bg-gray-800 text-primary hover:scale-110 transition-transform flex items-center justify-center shadow-sm">
+                <button id="themeToggle"
+                    class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gray-100 dark:bg-gray-800 text-primary hover:scale-110 transition-transform flex items-center justify-center shadow-sm">
                     <i class="fas fa-moon dark:hidden text-lg"></i>
                     <i class="fas fa-sun hidden dark:block text-yellow-500 text-lg"></i>
                 </button>
@@ -277,14 +506,18 @@
                 <h1 class="text-4xl md:text-7xl font-black mb-8 leading-tight md:leading-snug tracking-tight">
                     حول متجر أزيائك إلى <br><span class="premium-text-gradient">إمبراطورية ذكية</span>
                 </h1>
-                <p class="text-lg md:text-2xl text-slate-500 dark:text-gray-300 max-w-3xl mx-auto mb-12 font-bold leading-relaxed">
-                    نظام Zovix المُصمم خصيصاً ليناسب رقيّ محلات الملابس. دقة متناهية في المخزون، سرعة البرق في الكاشير، وتقارير أرباح لحظية بين يديك.
+                <p
+                    class="text-lg md:text-2xl text-slate-500 dark:text-gray-300 max-w-3xl mx-auto mb-12 font-bold leading-relaxed">
+                    نظام Zovix المُصمم خصيصاً ليناسب رقيّ محلات الملابس. دقة متناهية في المخزون، سرعة البرق في الكاشير،
+                    وتقارير أرباح لحظية بين يديك.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-6">
-                    <a href="#downloads" class="download-btn-pulse bg-primary hover:bg-secondary text-white px-10 py-5 rounded-2xl text-xl font-black shadow-2xl transition-all">
+                    <a href="#downloads"
+                        class="download-btn-pulse bg-primary hover:bg-secondary text-white px-10 py-5 rounded-2xl text-xl font-black shadow-2xl transition-all">
                         <i class="fas fa-cloud-download-alt mr-2"></i> احصل على نسختك الآن
                     </a>
-                    <a href="#pricing" class="bg-white dark:bg-dark-card border-2 border-primary text-primary px-10 py-5 rounded-2xl text-xl font-black hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
+                    <a href="#pricing"
+                        class="bg-white dark:bg-dark-card border-2 border-primary text-primary px-10 py-5 rounded-2xl text-xl font-black hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
                         <i class="fas fa-crown mr-2"></i> اكتشف الباقات
                     </a>
                 </div>
@@ -301,7 +534,8 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl md:text-5xl font-black mb-4">لا تدع المبيعات تفوتك!</h2>
-                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">اختر النسخة المناسبة لجهازك وابدأ في تحقيق الأرباح خلال دقائق</p>
+                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">اختر النسخة المناسبة لجهازك وابدأ في
+                    تحقيق الأرباح خلال دقائق</p>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-8" id="download-cards-container">
@@ -317,10 +551,11 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl font-black mb-4">لماذا Zovix هو الأفضل لمتجرك؟</h2>
-                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">أدوات صُممت خصيصاً لراحة بالك وزيادة مبيعاتك</p>
+                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">أدوات صُممت خصيصاً لراحة بالك وزيادة
+                    مبيعاتك</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="features-container">
-                </div>
+            </div>
         </div>
     </section>
 
@@ -328,13 +563,15 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl font-black mb-4">خطط الأسعار والاشتراك</h2>
-                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">استثمر في ذكاء عملك مع باقات مرنة وقوية</p>
+                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">استثمر في ذكاء عملك مع باقات مرنة وقوية
+                </p>
             </div>
 
             <div class="pricing-container" data-aos="fade-up" data-aos-delay="200">
                 <div class="pricing-card bronze-glow">
                     <div class="tier-header">
-                        <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: #cd7f32; margin-bottom: 15px;"></i>
+                        <i class="fas fa-shield-alt"
+                            style="font-size: 2.5rem; color: #cd7f32; margin-bottom: 15px;"></i>
                         <div class="tier-name">الباقة البرونزية</div>
                         <div class="tier-price">
                             <div style="margin-bottom: 5px;">
@@ -383,7 +620,8 @@
                             <span>مراقبة الأرباح واكتشاف العجز من هاتفك</span>
                         </li>
                     </ul>
-                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة البرونزية" target="_blank" class="pricing-cta cta-bronze">تواصل معنا</a>
+                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة البرونزية" target="_blank"
+                        class="pricing-cta cta-bronze">تواصل معنا</a>
                 </div>
 
                 <div class="pricing-card featured gold-glow">
@@ -406,7 +644,8 @@
                             <span>مراقبة الأرباح واكتشاف العجز من هاتفك</span>
                             <div class="tooltip-container">
                                 <i class="fas fa-question-circle info-icon"></i>
-                                <div class="tooltip-box">مزامنة سحابية لحظية عبر تطبيق المالك لمتابعة كل مليم يدخل الدرج وأنت في منزلك.</div>
+                                <div class="tooltip-box">مزامنة سحابية لحظية عبر تطبيق المالك لمتابعة كل مليم يدخل الدرج
+                                    وأنت في منزلك.</div>
                             </div>
                         </li>
                         <li class="feature-item">
@@ -442,8 +681,10 @@
                             </div>
                         </li>
                     </ul>
-                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة الذهبية" target="_blank" class="pricing-cta cta-gold">تواصل معنا</a>
-                    <div class="social-proof"><i class="fas fa-fire" style="color: #f59e0b;"></i> يختاره 85% من أصحاب المحلات</div>
+                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة الذهبية" target="_blank"
+                        class="pricing-cta cta-gold">تواصل معنا</a>
+                    <div class="social-proof"><i class="fas fa-fire" style="color: #f59e0b;"></i> يختاره 85% من أصحاب
+                        المحلات</div>
                 </div>
 
                 <div class="pricing-card diamond-glow">
@@ -465,7 +706,8 @@
                             <span>أمان سحابي شامل</span>
                             <div class="tooltip-container">
                                 <i class="fas fa-question-circle info-icon"></i>
-                                <div class="tooltip-box">مزامنة كاملة للمنتجات والفواتير والعملاء. بياناتك في أمان على سيرفراتنا</div>
+                                <div class="tooltip-box">مزامنة كاملة للمنتجات والفواتير والعملاء. بياناتك في أمان على
+                                    سيرفراتنا</div>
                             </div>
                         </li>
                         <li class="feature-item">
@@ -501,7 +743,8 @@
                             </div>
                         </li>
                     </ul>
-                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة الماسية" target="_blank" class="pricing-cta cta-diamond">تواصل معنا</a>
+                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة الماسية" target="_blank"
+                        class="pricing-cta cta-diamond">تواصل معنا</a>
                 </div>
             </div>
         </div>
@@ -514,7 +757,7 @@
                 <p class="text-slate-500 font-bold">كل ما تحتاجه لاحتراف النظام في دقائق</p>
             </div>
             <div class="grid md:grid-cols-2 gap-10" id="tutorials-container">
-                </div>
+            </div>
         </div>
     </section>
 
@@ -522,7 +765,7 @@
         <div class="container mx-auto px-6 max-w-3xl">
             <h2 class="text-4xl font-black text-center mb-16" data-aos="fade-up">أسئلة شائعة</h2>
             <div class="space-y-4" id="faq-container">
-                </div>
+            </div>
         </div>
     </section>
 
@@ -532,7 +775,8 @@
                 <div>
                     <img src="ZovixPOS.png" alt="Zovix Logo" class="h-20 mx-auto md:mx-0 mb-4 object-contain">
                     <p class="text-gray-400 font-bold leading-relaxed text-sm">
-                        برنامج Zovix POS هو الحل الأذكى والأكثر أناقة لإدارة متاجر الملابس والأزياء. صُمم ليمنحك الرؤية الكاملة لمشروعك.
+                        برنامج Zovix POS هو الحل الأذكى والأكثر أناقة لإدارة متاجر الملابس والأزياء. صُمم ليمنحك الرؤية
+                        الكاملة لمشروعك.
                     </p>
                 </div>
                 <div>
@@ -541,8 +785,10 @@
                         <li><a href="#features" class="hover:text-white transition-colors">المميزات</a></li>
                         <li><a href="#downloads" class="hover:text-white transition-colors">التحميل</a></li>
                         <li><a href="#pricing" class="hover:text-white transition-colors">الباقات</a></li>
-                        <li><a href="https://zovixpos.store/terms" target="_blank" class="hover:text-white transition-colors">شروط الاستخدام</a></li>
-                        <li><a href="https://zovixpos.store/privacy" target="_blank" class="hover:text-white transition-colors">سياسة الخصوصية</a></li>
+                        <li><a href="https://zovixpos.store/terms" target="_blank"
+                                class="hover:text-white transition-colors">شروط الاستخدام</a></li>
+                        <li><a href="https://zovixpos.store/privacy" target="_blank"
+                                class="hover:text-white transition-colors">سياسة الخصوصية</a></li>
                     </ul>
                 </div>
                 <div>
@@ -559,7 +805,9 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/201514179735?text=مرحباً، مهتم بنظام Zovix POS وأحتاج لبعض الاستفسارات." target="_blank" title="تحدث مع الدعم الفني" class="fixed bottom-8 left-8 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_10px_30px_rgba(37,211,102,0.4)] transition-all hover:scale-110 active:scale-95 z-[99999] pulse-green">
+    <a href="https://wa.me/201514179735?text=مرحباً، مهتم بنظام Zovix POS وأحتاج لبعض الاستفسارات." target="_blank"
+        title="تحدث مع الدعم الفني"
+        class="fixed bottom-8 left-8 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_10px_30px_rgba(37,211,102,0.4)] transition-all hover:scale-110 active:scale-95 z-[99999] pulse-green">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -571,9 +819,15 @@
         // Theme Toggle Logic
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+
+        // Default to dark mode if no preference is saved
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage))) {
             html.classList.add('dark');
+            if (!('theme' in localStorage)) localStorage.theme = 'dark';
+        } else {
+            html.classList.remove('dark');
         }
+
         themeToggle.addEventListener('click', () => {
             html.classList.toggle('dark');
             localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
@@ -626,7 +880,7 @@
         function renderDownloads(data) {
             const container = document.getElementById('download-cards-container');
             const { cashier, owner } = data.apps;
-            
+
             // إضافة target="_blank" لروابط التحميل
             container.innerHTML = `
                 <div class="bg-white dark:bg-dark-card rounded-[30px] p-8 shadow-xl border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up">
@@ -688,12 +942,12 @@
         function renderTutorials(videos) {
             const container = document.getElementById('tutorials-container');
             const section = document.getElementById('tutorials');
-            
+
             if (!videos || videos.length === 0) {
                 if (section) section.style.display = 'none';
                 return;
             }
-            
+
             if (section) section.style.display = 'block';
             container.innerHTML = videos.map((v, i) => `
                 <div class="group" data-aos="zoom-in" data-aos-delay="${i * 100}">
