@@ -59,10 +59,12 @@
             --primary: #A6499D;
         }
 
+        html,
         body {
             font-family: 'Cairo', sans-serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            width: 100%;
         }
 
         /* Glass & Gradients */
@@ -94,22 +96,38 @@
         /* --- EXACT CLONED PRICING CSS FROM OWNER.HTML --- */
         .pricing-container {
             display: flex;
-            gap: 20px;
-            justify-content: center;
+            gap: 15px;
+            justify-content: flex-start;
             align-items: stretch;
-            padding: 40px 10px;
-            flex-wrap: wrap;
+            padding: 40px 20px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
             direction: rtl;
             width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .pricing-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .pricing-container {
+                justify-content: center;
+                flex-wrap: wrap;
+                overflow-x: visible;
+                padding: 40px 10px;
+            }
         }
 
         .pricing-card {
-            flex: 1;
-            min-width: 280px;
+            flex: 0 0 280px;
+            scroll-snap-align: center;
             max-width: 100%;
             background: #fff;
             border-radius: 20px;
-            padding: 30px 20px;
+            padding: 20px 15px;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -118,6 +136,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             overflow: visible;
             text-align: right;
+        }
+
+        @media (min-width: 768px) {
+            .pricing-card {
+                padding: 30px 20px;
+            }
         }
 
         .dark .pricing-card {
@@ -198,13 +222,20 @@
 
         .tier-header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
         .tier-name {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .tier-name {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
         }
 
         .dark .tier-name {
@@ -212,9 +243,15 @@
         }
 
         .price-value {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: #1a1a1a;
+        }
+
+        @media (min-width: 768px) {
+            .price-value {
+                font-size: 2rem;
+            }
         }
 
         .dark .price-value {
@@ -472,11 +509,11 @@
             <div class="flex items-center gap-2 md:gap-4">
                 <img src="ZovixPOS.png" alt="Zovix POS Logo"
                     class="h-12 md:h-24 w-auto object-contain hover:scale-105 transition-transform">
-                <div class="hidden sm:block">
-                    <span class="text-xl md:text-3xl font-black text-primary tracking-tighter block leading-none">ZOVIX
+                <div class="flex flex-col">
+                    <span class="text-lg md:text-3xl font-black text-primary tracking-tighter block leading-none">ZOVIX
                         POS</span>
                     <span
-                        class="text-[8px] md:text-xs font-bold text-secondary uppercase tracking-[2px] md:tracking-[3px]">Elite
+                        class="text-[8px] md:text-xs font-bold text-secondary uppercase tracking-[2px] md:tracking-[3px] leading-none mt-1">Elite
                         Retail System</span>
                 </div>
             </div>
@@ -496,18 +533,23 @@
                     <i class="fas fa-moon dark:hidden text-lg"></i>
                     <i class="fas fa-sun hidden dark:block text-yellow-500 text-lg"></i>
                 </button>
+                <button id="mobileMenuBtn"
+                    class="lg:hidden w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 text-primary flex items-center justify-center shadow-sm">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
+
     </nav>
 
-    <section class="relative pt-40 md:pt-48 pb-20 overflow-hidden hero-gradient">
-        <div class="container mx-auto px-6 text-center">
+    <section class="relative pt-24 md:pt-48 pb-10 md:pb-20 overflow-hidden hero-gradient">
+        <div class="container mx-auto px-4 md:px-6 text-center">
             <div data-aos="zoom-in" data-aos-duration="1000">
-                <h1 class="text-4xl md:text-7xl font-black mb-8 leading-tight md:leading-snug tracking-tight">
+                <h1 class="text-3xl md:text-7xl font-black mb-4 md:mb-8 leading-tight md:leading-snug tracking-tight">
                     حول متجر أزيائك إلى <br><span class="premium-text-gradient">إمبراطورية ذكية</span>
                 </h1>
                 <p
-                    class="text-lg md:text-2xl text-slate-500 dark:text-gray-300 max-w-3xl mx-auto mb-12 font-bold leading-relaxed">
+                    class="text-base md:text-2xl text-slate-500 dark:text-gray-300 max-w-3xl mx-auto mb-6 md:mb-12 font-bold leading-relaxed">
                     نظام Zovix المُصمم خصيصاً ليناسب رقيّ محلات الملابس. دقة متناهية في المخزون، سرعة البرق في الكاشير،
                     وتقارير أرباح لحظية بين يديك.
                 </p>
@@ -554,7 +596,7 @@
                 <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">أدوات صُممت خصيصاً لراحة بالك وزيادة
                     مبيعاتك</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="features-container">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" id="features-container">
             </div>
         </div>
     </section>
@@ -805,6 +847,56 @@
         </div>
     </footer>
 
+    <!-- New & Improved MOBILE MENU SIDE DRAWER (Outside Nav) -->
+    <div id="mobileMenu"
+        class="fixed inset-y-0 right-0 w-[85%] max-w-[400px] bg-white dark:bg-[#121212] z-[99999] flex flex-col transition-transform duration-500 translate-x-full lg:hidden shadow-2xl">
+        <!-- Menu Header -->
+        <div
+            class="p-6 bg-primary dark:bg-primary/20 text-white dark:text-primary flex justify-between items-center shadow-lg">
+            <div class="flex items-center gap-3">
+                <img src="ZovixPOS.png" class="h-10 w-auto">
+                <span class="font-black text-2xl tracking-tighter">ZOVIX POS</span>
+            </div>
+            <button id="closeMenuBtn"
+                class="w-12 h-12 rounded-2xl bg-white/20 dark:bg-primary/30 flex items-center justify-center active:scale-90 transition-transform">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Menu Links -->
+        <div class="flex-1 py-10 px-6 space-y-4 overflow-y-auto">
+            <a href="#features"
+                class="flex items-center gap-5 px-8 py-5 rounded-3xl bg-gray-50 dark:bg-white/5 text-xl font-black text-slate-800 dark:text-white transition-all active:scale-95 border-2 border-transparent hover:border-primary/30">
+                <i class="fas fa-rocket text-primary text-2xl"></i> المميزات
+            </a>
+            <a href="#downloads"
+                class="flex items-center gap-5 px-8 py-5 rounded-3xl bg-gray-50 dark:bg-white/5 text-xl font-black text-slate-800 dark:text-white transition-all active:scale-95 border-2 border-transparent hover:border-primary/30">
+                <i class="fas fa-download text-primary text-2xl"></i> التحميل
+            </a>
+            <a href="#pricing"
+                class="flex items-center gap-5 px-8 py-5 rounded-3xl bg-gray-50 dark:bg-white/5 text-xl font-black text-slate-800 dark:text-white transition-all active:scale-95 border-2 border-transparent hover:border-primary/30">
+                <i class="fas fa-crown text-primary text-2xl"></i> الباقات
+            </a>
+            <a href="#tutorials"
+                class="flex items-center gap-5 px-8 py-5 rounded-3xl bg-gray-50 dark:bg-white/5 text-xl font-black text-slate-800 dark:text-white transition-all active:scale-95 border-2 border-transparent hover:border-primary/30">
+                <i class="fas fa-play-circle text-primary text-2xl"></i> الشروحات
+            </a>
+        </div>
+
+        <!-- Menu Footer -->
+        <div class="p-8 bg-gray-50 dark:bg-white/5 border-t dark:border-white/10">
+            <a href="https://wa.me/201514179735" target="_blank"
+                class="flex items-center justify-center gap-4 bg-[#25D366] text-white w-full py-5 rounded-3xl font-black text-xl shadow-xl shadow-green-500/30 active:scale-95 transition-transform">
+                <i class="fab fa-whatsapp text-3xl"></i> تواصل مع الدعم
+            </a>
+        </div>
+    </div>
+
+    <!-- Backdrop Overlay -->
+    <div id="menuBackdrop"
+        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[99998] hidden lg:hidden transition-opacity duration-500 opacity-0">
+    </div>
+
     <a href="https://wa.me/201514179735?text=مرحباً، مهتم بنظام Zovix POS وأحتاج لبعض الاستفسارات." target="_blank"
         title="تحدث مع الدعم الفني"
         class="fixed bottom-8 left-8 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_10px_30px_rgba(37,211,102,0.4)] transition-all hover:scale-110 active:scale-95 z-[99999] pulse-green">
@@ -832,6 +924,30 @@
             html.classList.toggle('dark');
             localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
         });
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuBackdrop = document.getElementById('menuBackdrop');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        const openMenu = () => {
+            mobileMenu.classList.remove('translate-x-full');
+            menuBackdrop.classList.remove('hidden');
+            setTimeout(() => menuBackdrop.classList.add('opacity-100'), 10);
+        };
+
+        const closeMenu = () => {
+            mobileMenu.classList.add('translate-x-full');
+            menuBackdrop.classList.remove('opacity-100');
+            setTimeout(() => menuBackdrop.classList.add('hidden'), 500);
+        };
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuBackdrop.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
         // Dynamic Loading Engine (100% Raw URLs)
         const URLS = {
@@ -883,40 +999,40 @@
 
             // إضافة target="_blank" لروابط التحميل
             container.innerHTML = `
-                <div class="bg-white dark:bg-dark-card rounded-[30px] p-8 shadow-xl border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="bg-primary/10 text-primary px-4 py-1 rounded-lg text-sm font-black uppercase">نظام الكاشير (POS)</span>
-                        <div class="flex items-center gap-2 text-slate-400 font-bold text-xs"><i class="fas fa-circle text-green-500 scale-75"></i> v${cashier.windows.version}</div>
+                <div class="bg-white dark:bg-dark-card rounded-2xl md:rounded-[30px] p-5 md:p-8 shadow-xl border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up">
+                    <div class="flex items-center justify-between mb-4 md:mb-6">
+                        <span class="bg-primary/10 text-primary px-3 md:px-4 py-1 rounded-lg text-xs md:text-sm font-black uppercase">نظام الكاشير (POS)</span>
+                        <div class="flex items-center gap-2 text-slate-400 font-bold text-[10px] md:text-xs"><i class="fas fa-circle text-green-500 scale-75"></i> v${cashier.windows.version}</div>
                     </div>
-                    <p class="text-slate-500 dark:text-gray-400 font-bold mb-8 leading-relaxed h-12">${cashier.windows.message}</p>
+                    <p class="text-slate-500 dark:text-gray-400 font-bold mb-6 md:mb-8 leading-relaxed h-auto md:h-12 text-sm md:text-base">${cashier.windows.message}</p>
                     
-                    <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                         <div class="flex flex-col gap-2">
-                            <a href="${cashier.windows.download_url}" target="_blank" class="flex items-center justify-center gap-2 bg-primary text-white px-4 py-4 rounded-xl font-black hover:bg-secondary transition-all shadow-lg shadow-primary/20">
-                                <i class="fab fa-windows text-xl"></i> تحميل للويندوز
+                            <a href="${cashier.windows.download_url}" target="_blank" class="flex items-center justify-center gap-2 bg-primary text-white px-3 md:px-4 py-3 md:py-4 rounded-xl font-black hover:bg-secondary transition-all shadow-lg shadow-primary/20 text-sm md:text-base">
+                                <i class="fab fa-windows text-lg"></i> تحميل للويندوز
                             </a>
                         </div>
                         <div class="flex flex-col gap-2">
-                            <a href="${cashier.android.download_url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-900 dark:bg-slate-700 text-white px-4 py-4 rounded-xl font-black hover:bg-black transition-all shadow-lg">
-                                <i class="fab fa-android text-xl text-green-400"></i> تحميل للأندرويد
+                            <a href="${cashier.android.download_url}" target="_blank" class="flex items-center justify-center gap-2 bg-slate-900 dark:bg-slate-700 text-white px-3 md:px-4 py-3 md:py-4 rounded-xl font-black hover:bg-black transition-all shadow-lg text-sm md:text-base">
+                                <i class="fab fa-android text-lg text-green-400"></i> للأندرويد
                             </a>
-                            <p class="text-[10px] text-slate-400 font-bold text-center">(نوصي بأجهزة التابلت لتجربة كاشير أسرع)</p>
+                            <p class="text-[9px] md:text-[10px] text-slate-400 font-bold text-center">(نوصي بأجهزة التابلت)</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-dark-card rounded-[30px] p-8 shadow-xl border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center justify-between mb-6">
-                        <span class="bg-blue-500/10 text-blue-500 px-4 py-1 rounded-lg text-sm font-black uppercase">لوحة تحكم المالك</span>
-                        <div class="flex items-center gap-2 text-slate-400 font-bold text-xs"><i class="fas fa-circle text-green-500 scale-75"></i> v${owner.android.version}</div>
+                <div class="bg-white dark:bg-dark-card rounded-2xl md:rounded-[30px] p-5 md:p-8 shadow-xl border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center justify-between mb-4 md:mb-6">
+                        <span class="bg-blue-500/10 text-blue-500 px-3 md:px-4 py-1 rounded-lg text-xs md:text-sm font-black uppercase">لوحة تحكم المالك</span>
+                        <div class="flex items-center gap-2 text-slate-400 font-bold text-[10px] md:text-xs"><i class="fas fa-circle text-green-500 scale-75"></i> v${owner.android.version}</div>
                     </div>
-                    <p class="text-slate-500 dark:text-gray-400 font-bold mb-8 leading-relaxed h-12">${owner.android.message}</p>
+                    <p class="text-slate-500 dark:text-gray-400 font-bold mb-6 md:mb-8 leading-relaxed h-auto md:h-12 text-sm md:text-base">${owner.android.message}</p>
                     
                     <div class="flex flex-col gap-2">
-                        <a href="${owner.android.download_url}" target="_blank" class="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-4 rounded-xl font-black hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">
-                            <i class="fab fa-android text-xl"></i> تحميل تطبيق الهاتف
+                        <a href="${owner.android.download_url}" target="_blank" class="flex items-center justify-center gap-2 bg-blue-600 text-white px-3 md:px-4 py-3 md:py-4 rounded-xl font-black hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20 text-sm md:text-base">
+                            <i class="fab fa-android text-lg"></i> تحميل تطبيق الهاتف
                         </a>
-                        <p class="text-[10px] text-slate-400 font-bold text-center">(مخصص لمراقبة أرباحك ومخازنك من أي مكان)</p>
+                        <p class="text-[9px] md:text-[10px] text-slate-400 font-bold text-center">(مراقب الأرباح والمخازن)</p>
                     </div>
                 </div>
             `;
@@ -928,12 +1044,12 @@
             container.innerHTML = features.map((f, i) => {
                 let safeIcon = f.icon.includes('wifi-slash') ? 'fas fa-link-slash' : f.icon;
                 return `
-                <div class="bg-white dark:bg-dark-card p-8 rounded-3xl shadow-lg border border-transparent hover:border-primary/30 transition-all text-center group" data-aos="fade-up" data-aos-delay="${i * 100}">
-                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all transform group-hover:rotate-6">
+                <div class="bg-white dark:bg-dark-card p-4 md:p-8 rounded-2xl md:rounded-3xl shadow-lg border border-transparent hover:border-primary/30 transition-all text-center group" data-aos="fade-up" data-aos-delay="${i * 100}">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-primary/10 text-primary rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl mx-auto mb-4 md:mb-6 group-hover:bg-primary group-hover:text-white transition-all transform group-hover:rotate-6">
                         <i class="${safeIcon}"></i>
                     </div>
-                    <h4 class="text-xl font-black mb-3">${f.title}</h4>
-                    <p class="text-slate-500 dark:text-gray-400 font-bold leading-relaxed text-sm">${f.description}</p>
+                    <h4 class="text-base md:text-xl font-black mb-2 md:mb-3">${f.title}</h4>
+                    <p class="text-slate-500 dark:text-gray-400 font-bold leading-relaxed text-[10px] md:text-sm">${f.description}</p>
                 </div>
                 `
             }).join('');
