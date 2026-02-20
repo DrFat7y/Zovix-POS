@@ -9,7 +9,7 @@
       },
       "windows": {
         "version": "1.0.1",
-        "force_update": true,
+        "force_update": false,
         "message": "تحديث هام لنظام الويندوز لضمان استقرار العمليات.",
         "download_url": "https://github.com/DrFat7y/EZ-Store-POS/releases/download/EZ/EZ-Store-POS-Setup-1.0.2.exe"
       }
@@ -25,6 +25,7 @@
   }
 
 }
+
 
 
 
