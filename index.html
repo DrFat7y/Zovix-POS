@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zovix POS | نظام إدارة المبيعات للأزياء والمحلات</title>
+    <link rel="icon" type="image/png" href="ZovixPOS.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A6499D',
+                        secondary: '#8E3E87',
+                        accent: '#ff69b4',
+                        dark: '#121212',
+                        'dark-card': '#1e1e1e'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary: #A6499D;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Glass & Gradients */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .dark .glass {
+            background: rgba(18, 18, 18, 0.85);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, rgba(166, 73, 157, 0.15) 0%, transparent 70%);
+        }
+
+        .dark .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, rgba(166, 73, 157, 0.25) 0%, transparent 70%);
+        }
+
+        .premium-text-gradient {
+            background: linear-gradient(135deg, #A6499D 0%, #ff69b4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- EXACT CLONED PRICING CSS FROM OWNER.HTML --- */
+        .pricing-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: stretch;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            direction: rtl;
+        }
+
+        .pricing-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid #eee;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: visible;
+            text-align: right;
+        }
+
+        .dark .pricing-card {
+            background: #1e1e1e;
+            border-color: #333;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            z-index: 500 !important;
+        }
+
+        .pricing-card.bronze-glow:hover { box-shadow: 0 0 25px rgba(205, 127, 50, 0.4); }
+        .pricing-card.gold-glow:hover { box-shadow: 0 0 25px rgba(255, 215, 0, 0.5); }
+        .pricing-card.diamond-glow:hover { box-shadow: 0 0 25px rgba(163, 73, 255, 0.5); }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid #ffd700;
+            box-shadow: 0 15px 45px rgba(255, 215, 0, 0.15);
+            z-index: 2;
+        }
+
+        .pricing-card.featured:hover { transform: scale(1.05) translateY(-10px); }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        .savings-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: #10B981;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            animation: badge-pulse 2s infinite;
+        }
+
+        @keyframes badge-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .tier-header { text-align: center; margin-bottom: 25px; }
+        .tier-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+        .dark .tier-name { color: #fff; }
+        .price-value { font-size: 2rem; font-weight: 900; color: #1a1a1a; }
+        .dark .price-value { color: #fff; }
+        .price-sub { font-size: 0.85rem; color: #888; display: block; margin-top: 2px; }
+        .price-yearly { font-size: 0.95rem; color: #666; display: block; margin-top: 6px; font-weight: 500; }
+        .dark .price-yearly { color: #aaa; }
+
+        .feature-list { list-style: none; padding: 0; flex: 1; margin: 15px 0; }
+        .feature-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 0.95rem; color: #444; line-height: 1.5; }
+        .dark .feature-item { color: #ccc; }
+        .feature-item i.check-icon { color: #2ecc71; font-size: 1rem; margin-top: 4px; }
+        .feature-item.disabled-feature { opacity: 0.5; }
+
+        .tooltip-container { position: relative; display: inline-block; cursor: help; margin-top: 3px; }
+        .tooltip-container .info-icon { color: var(--primary); font-size: 0.8rem; opacity: 0.6; transition: opacity 0.3s; }
+        .tooltip-container:hover .info-icon { opacity: 1; }
+
+        .tooltip-box {
+            visibility: hidden; width: 200px; background-color: var(--primary); color: #fff; text-align: right;
+            border-radius: 8px; padding: 10px; position: absolute; z-index: 100; bottom: 125%; left: 50%;
+            margin-left: -100px; opacity: 0; transition: opacity 0.3s, transform 0.3s; font-size: 0.8rem;
+            line-height: 1.4; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transform: translateY(10px); pointer-events: none;
+        }
+        .tooltip-box::after {
+            content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px;
+            border-width: 5px; border-style: solid; border-color: var(--primary) transparent transparent transparent;
+        }
+        .tooltip-container:hover .tooltip-box { visibility: visible; opacity: 1; transform: translateY(0); }
+        .dark .tooltip-box { background-color: #333; border: 1px solid var(--primary); }
+
+        .pricing-cta {
+            width: 100%; padding: 14px; border-radius: 12px; font-weight: 800; font-size: 1rem;
+            cursor: pointer; transition: all 0.3s; text-decoration: none; display: flex;
+            align-items: center; justify-content: center; gap: 8px; margin-top: 15px; border: none;
+        }
+        .cta-bronze { background: transparent; color: #cd7f32; border: 2px solid #cd7f32; }
+        .dark .cta-bronze { color: #e1a975; border-color: #e1a975; }
+        
+        .cta-gold { background: linear-gradient(135deg, #ffd700, #f59e0b); color: #000; position: relative; overflow: hidden; }
+        .cta-gold::after {
+            content: ''; position: absolute; top: -50%; left: -150%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transform: rotate(45deg); animation: cta-shimmer 3s infinite;
+        }
+        @keyframes cta-shimmer { 0% { left: -150%; } 50% { left: 150%; } 100% { left: 150%; } }
+        
+        .cta-diamond { background: #a349ff; color: #fff; }
+        .pricing-cta:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        .social-proof { display: block; font-size: 0.75rem; color: #888; margin-top: 8px; text-align: center; font-weight: bold; }
+
+        /* Psychological Animations for Downloads */
+        .download-btn-pulse { animation: dl-pulse 2s infinite; }
+        @keyframes dl-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(166, 73, 157, 0.6); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(166, 73, 157, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(166, 73, 157, 0); }
+        }
+
+        /* Floating WhatsApp */
+        .pulse-green { animation: pulse-green-animation 2s infinite; }
+        @keyframes pulse-green-animation {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.8); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #A6499D; border-radius: 10px; }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-900 dark:bg-dark dark:text-gray-100 transition-colors duration-300">
+
+    <nav class="fixed top-0 w-full z-[1000] glass border-b border-gray-200/50 dark:border-gray-800/50">
+        <div class="container mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <img src="ZovixPOS.png" alt="Zovix POS Logo" class="h-16 md:h-24 w-auto object-contain hover:scale-105 transition-transform">
+                <div class="hidden sm:block">
+                    <span class="text-2xl md:text-3xl font-black text-primary tracking-tighter block leading-none">ZOVIX POS</span>
+                    <span class="text-[10px] md:text-xs font-bold text-secondary uppercase tracking-[3px]">Elite Retail System</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-8 font-bold text-lg">
+                <a href="#features" class="hover:text-primary transition-colors">المميزات</a>
+                <a href="#downloads" class="hover:text-primary transition-colors text-primary border-b-2 border-primary pb-1">التحميل مجاناً</a>
+                <a href="#pricing" class="hover:text-primary transition-colors">الباقات</a>
+                <a href="#tutorials" class="hover:text-primary transition-colors">الشروحات</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gray-100 dark:bg-gray-800 text-primary hover:scale-110 transition-transform flex items-center justify-center shadow-sm">
+                    <i class="fas fa-moon dark:hidden text-lg"></i>
+                    <i class="fas fa-sun hidden dark:block text-yellow-500 text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-40 md:pt-48 pb-20 overflow-hidden hero-gradient">
+        <div class="container mx-auto px-6 text-center">
+            <div data-aos="zoom-in" data-aos-duration="1000">
+                <h1 class="text-4xl md:text-7xl font-black mb-8 leading-tight md:leading-snug tracking-tight">
+                    حول متجر أزيائك إلى <br><span class="premium-text-gradient">إمبراطورية ذكية</span>
+                </h1>
+                <p class="text-lg md:text-2xl text-slate-500 dark:text-gray-300 max-w-3xl mx-auto mb-12 font-bold leading-relaxed">
+                    نظام Zovix المُصمم خصيصاً ليناسب رقيّ محلات الملابس. دقة متناهية في المخزون، سرعة البرق في الكاشير، وتقارير أرباح لحظية بين يديك.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="#downloads" class="download-btn-pulse bg-primary hover:bg-secondary text-white px-10 py-5 rounded-2xl text-xl font-black shadow-2xl transition-all">
+                        <i class="fas fa-cloud-download-alt mr-2"></i> احصل على نسختك الآن
+                    </a>
+                    <a href="#pricing" class="bg-white dark:bg-dark-card border-2 border-primary text-primary px-10 py-5 rounded-2xl text-xl font-black hover:bg-gray-50 dark:hover:bg-gray-800 transition-all">
+                        <i class="fas fa-crown mr-2"></i> اكتشف الباقات
+                    </a>
+                </div>
+                <div class="mt-8 flex justify-center gap-6 text-sm font-bold text-slate-400 dark:text-gray-500">
+                    <span><i class="fas fa-shield-check text-green-500"></i> آمن 100%</span>
+                    <span><i class="fas fa-bolt text-yellow-500"></i> سريع وسهل</span>
+                    <span><i class="fas fa-headset text-primary"></i> دعم فني</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="downloads" class="py-20 bg-white dark:bg-[#151515]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">لا تدع المبيعات تفوتك!</h2>
+                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">اختر النسخة المناسبة لجهازك وابدأ في تحقيق الأرباح خلال دقائق</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8" id="download-cards-container">
+                <div class="col-span-2 text-center py-20">
+                    <i class="fas fa-circle-notch fa-spin text-5xl text-primary mb-4"></i>
+                    <p class="font-black text-xl text-slate-500">جاري تجهيز روابط التحميل المباشرة...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black mb-4">لماذا Zovix هو الأفضل لمتجرك؟</h2>
+                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">أدوات صُممت خصيصاً لراحة بالك وزيادة مبيعاتك</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="features-container">
+                </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-20 bg-white dark:bg-[#151515]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black mb-4">خطط الأسعار والاشتراك</h2>
+                <p class="text-slate-500 dark:text-gray-400 font-bold text-lg">استثمر في ذكاء عملك مع باقات مرنة وقوية</p>
+            </div>
+
+            <div class="pricing-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="pricing-card bronze-glow">
+                    <div class="tier-header">
+                        <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: #cd7f32; margin-bottom: 15px;"></i>
+                        <div class="tier-name">الباقة البرونزية</div>
+                        <div class="tier-price">
+                            <div style="margin-bottom: 5px;">
+                                <span class="price-value">149</span>
+                                <span class="price-sub">جنيه / شهرياً</span>
+                            </div>
+                            <div class="price-yearly">أو 1499 / سنوياً</div>
+                            <div class="savings-badge">وفر شهرين</div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>نقطة بيع أوفلاين</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">مبيعات وإدارة مخزون تعمل بكفاءة وثبات تام بدون إنترنت</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>تخزين محلي آمن</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">يتم حفظ جميع بياناتك على مساحة جهازك الشخصي فقط</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>مستخدم وجهاز واحد</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">رخصة لجهاز كاشير واحد، مع حساب مدير واحد</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>تقارير يومية مبسطة</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">عرض إجماليات المبيعات والأرباح الخاصة بوردية اليوم</div>
+                            </div>
+                        </li>
+                        <li class="feature-item disabled-feature">
+                            <i class="fas fa-times" style="color: #ef4444; margin-left: 10px;"></i>
+                            <span>مراقبة الأرباح واكتشاف العجز من هاتفك</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة البرونزية" target="_blank" class="pricing-cta cta-bronze">تواصل معنا</a>
+                </div>
+
+                <div class="pricing-card featured gold-glow">
+                    <div class="pricing-badge">الأكثر طلباً</div>
+                    <div class="tier-header">
+                        <i class="fas fa-crown" style="font-size: 2.5rem; color: #ffd700; margin-bottom: 15px;"></i>
+                        <div class="tier-name">الباقة الذهبية</div>
+                        <div class="tier-price">
+                            <div style="margin-bottom: 5px;">
+                                <span class="price-value">349</span>
+                                <span class="price-sub">جنيه / شهرياً</span>
+                            </div>
+                            <div class="price-yearly">أو 3199 / سنوياً</div>
+                            <div class="savings-badge">وفر 1000 جنيه</div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>مراقبة الأرباح واكتشاف العجز من هاتفك</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">مزامنة سحابية لحظية عبر تطبيق المالك لمتابعة كل مليم يدخل الدرج وأنت في منزلك.</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>إدارة فريق العمل</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">أضف حتى 5 موظفين/كاشير بصلاحيات مخصصة</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>تقارير متقدمة وتصدير PDF</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">كشف حساب دقيق، المنتجات الراكدة والأكثر مبيعاً</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>نقطة بيع مركزية</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">رخصة تشغيل لجهاز كاشير واحد مرتبط بالسحابة</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>تخزين محلي للفواتير</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">تُحفظ تفاصيل الفواتير والمنتجات على جهازك لتسريع الأداء</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة الذهبية" target="_blank" class="pricing-cta cta-gold">تواصل معنا</a>
+                    <div class="social-proof"><i class="fas fa-fire" style="color: #f59e0b;"></i> يختاره 85% من أصحاب المحلات</div>
+                </div>
+
+                <div class="pricing-card diamond-glow">
+                    <div class="tier-header">
+                        <i class="fas fa-gem" style="font-size: 2.5rem; color: #a349ff; margin-bottom: 15px;"></i>
+                        <div class="tier-name">الباقة الماسية</div>
+                        <div class="tier-price">
+                            <div style="margin-bottom: 5px;">
+                                <span class="price-value">699</span>
+                                <span class="price-sub">جنيه / شهرياً</span>
+                            </div>
+                            <div class="price-yearly">أو 6999 / سنوياً</div>
+                            <div class="savings-badge">وفر 1400 جنيه</div>
+                        </div>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>أمان سحابي شامل</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">مزامنة كاملة للمنتجات والفواتير والعملاء. بياناتك في أمان على سيرفراتنا</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>ربط متعدد الأجهزة</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">تشغيل النظام على 3 أجهزة كاشير في نفس الوقت</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>تحليلات ورسوم بيانية</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">لوحات بصرية ذكية ورسوم بيانية لسرعة اتخاذ القرارات</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>تصدير محاسبي Excel</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">استخراج كافة بياناتك لمطابقتها مع أنظمة المحاسبة</div>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle check-icon"></i>
+                            <span>طاقم عمل لا محدود</span>
+                            <div class="tooltip-container">
+                                <i class="fas fa-question-circle info-icon"></i>
+                                <div class="tooltip-box">إضافة عدد غير محدود من المستخدمين بلا أي قيود</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/201514179735?text=مرحباً، أود الاشتراك في الباقة الماسية" target="_blank" class="pricing-cta cta-diamond">تواصل معنا</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tutorials" class="py-20 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black mb-4">مركز الشروحات</h2>
+                <p class="text-slate-500 font-bold">كل ما تحتاجه لاحتراف النظام في دقائق</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10" id="tutorials-container">
+                </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white dark:bg-[#151515]">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-4xl font-black text-center mb-16" data-aos="fade-up">أسئلة شائعة</h2>
+            <div class="space-y-4" id="faq-container">
+                </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white pt-20 pb-10 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center md:text-right">
+            <div class="grid md:grid-cols-3 gap-10 mb-12">
+                <div>
+                    <img src="ZovixPOS.png" alt="Zovix Logo" class="h-20 mx-auto md:mx-0 mb-4 object-contain">
+                    <p class="text-gray-400 font-bold leading-relaxed text-sm">
+                        برنامج Zovix POS هو الحل الأذكى والأكثر أناقة لإدارة متاجر الملابس والأزياء. صُمم ليمنحك الرؤية الكاملة لمشروعك.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-black mb-6 text-primary">الملاحة</h4>
+                    <ul class="space-y-3 text-gray-400 font-bold">
+                        <li><a href="#features" class="hover:text-white transition-colors">المميزات</a></li>
+                        <li><a href="#downloads" class="hover:text-white transition-colors">التحميل</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">الباقات</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-black mb-6 text-primary">الدعم المباشر</h4>
+                    <ul class="space-y-3 text-gray-400 font-bold">
+                        <li><i class="fab fa-whatsapp text-green-500 mr-2"></i> 01514179735</li>
+                        <li><i class="fas fa-map-marker-alt text-primary mr-2"></i> مصر - دعم فني عالمي</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 font-bold text-sm">
+                <p>جميع الحقوق محفوظة لـ Zovix POS. تقنية إدارة المستقبل بتصميم اليوم.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/201514179735?text=مرحباً، مهتم بنظام Zovix POS وأحتاج لبعض الاستفسارات." target="_blank" title="تحدث مع الدعم الفني" class="fixed bottom-8 left-8 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_10px_30px_rgba(37,211,102,0.4)] transition-all hover:scale-110 active:scale-95 z-[99999] pulse-green">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init Animation on Scroll
+        AOS.init({ duration: 800, once: true, offset: 50 });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        }
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // Dynamic Loading Engine (100% Raw URLs)
+        const URLS = {
+            updates: 'https://raw.githubusercontent.com/DrFat7y/Zovix-POS/refs/heads/main/updates.json',
+            content: 'https://raw.githubusercontent.com/DrFat7y/Zovix-POS/refs/heads/main/content.json'
+        };
+
+        // Initialize Page (Decoupled & Fast)
+        initPage();
+
+        async function initPage() {
+            loadDownloads();
+            loadContent();
+        }
+
+        async function loadDownloads() {
+            try {
+                const res = await fetch(URLS.updates);
+                if (!res.ok) throw new Error("Updates fetch failed");
+                const data = await res.json();
+                renderDownloads(data);
+            } catch (err) {
+                document.getElementById('download-cards-container').innerHTML = `
+                    <div class="col-span-2 text-center text-red-500 py-10 font-bold">
+                        <i class="fas fa-exclamation-triangle mb-2 text-3xl"></i><br>
+                        عفواً، فشل جلب روابط التحميل. يرجى التواصل مع الدعم.
+                    </div>`;
+            }
+        }
+
+        async function loadContent() {
+            try {
+                const res = await fetch(URLS.content);
+                if (!res.ok) throw new Error("Content fetch failed");
+                const data = await res.json();
+                renderFeatures(data.features);
+                renderTutorials(data.tutorials);
+                renderFAQ(data.faq);
+            } catch (err) {
+                console.warn("Using mockup content defaults.");
+                renderFeatures(getMockupFeatures());
+                renderFAQ(getMockupFAQ());
+            }
+        }
+
+        function renderDownloads(data) {
+            const container = document.getElementById('download-cards-container');
+            const { cashier, owner } = data.apps;
+            
+            // روابط التحميل مباشرة مش بتفتح صفحة جديدة عشان تنزل على طول
+            container.innerHTML = `
+                <div class="bg-white dark:bg-dark-card rounded-[30px] p-8 shadow-xl border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="bg-primary/10 text-primary px-4 py-1 rounded-lg text-sm font-black uppercase">نظام الكاشير (POS)</span>
+                        <div class="flex items-center gap-2 text-slate-400 font-bold text-xs"><i class="fas fa-circle text-green-500 scale-75"></i> v${cashier.windows.version}</div>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 font-bold mb-8 leading-relaxed h-12">${cashier.windows.message}</p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-2">
+                            <a href="${cashier.windows.download_url}" class="flex items-center justify-center gap-2 bg-primary text-white px-4 py-4 rounded-xl font-black hover:bg-secondary transition-all shadow-lg shadow-primary/20">
+                                <i class="fab fa-windows text-xl"></i> تحميل للويندوز
+                            </a>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <a href="${cashier.android.download_url}" class="flex items-center justify-center gap-2 bg-slate-900 dark:bg-slate-700 text-white px-4 py-4 rounded-xl font-black hover:bg-black transition-all shadow-lg">
+                                <i class="fab fa-android text-xl text-green-400"></i> تحميل للأندرويد
+                            </a>
+                            <p class="text-[10px] text-slate-400 font-bold text-center">(نوصي بأجهزة التابلت لتجربة كاشير أسرع)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-dark-card rounded-[30px] p-8 shadow-xl border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="bg-blue-500/10 text-blue-500 px-4 py-1 rounded-lg text-sm font-black uppercase">لوحة تحكم المالك</span>
+                        <div class="flex items-center gap-2 text-slate-400 font-bold text-xs"><i class="fas fa-circle text-green-500 scale-75"></i> v${owner.android.version}</div>
+                    </div>
+                    <p class="text-slate-500 dark:text-gray-400 font-bold mb-8 leading-relaxed h-12">${owner.android.message}</p>
+                    
+                    <div class="flex flex-col gap-2">
+                        <a href="${owner.android.download_url}" class="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-4 rounded-xl font-black hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">
+                            <i class="fab fa-android text-xl"></i> تحميل تطبيق الهاتف
+                        </a>
+                        <p class="text-[10px] text-slate-400 font-bold text-center">(مخصص لمراقبة أرباحك ومخازنك من أي مكان)</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFeatures(features) {
+            const container = document.getElementById('features-container');
+            if (!features) return;
+            container.innerHTML = features.map((f, i) => {
+                // فلترة ذكية: لو الأيقونة مش مدعومة هنبدلها بحاجة تشتغل 100%
+                let safeIcon = f.icon.includes('wifi-slash') ? 'fas fa-link-slash' : f.icon;
+                return `
+                <div class="bg-white dark:bg-dark-card p-8 rounded-3xl shadow-lg border border-transparent hover:border-primary/30 transition-all text-center group" data-aos="fade-up" data-aos-delay="${i * 100}">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-2xl mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all transform group-hover:rotate-6">
+                        <i class="${safeIcon}"></i>
+                    </div>
+                    <h4 class="text-xl font-black mb-3">${f.title}</h4>
+                    <p class="text-slate-500 dark:text-gray-400 font-bold leading-relaxed text-sm">${f.description}</p>
+                </div>
+                `
+            }).join('');
+        }
+
+        function renderTutorials(videos) {
+            const container = document.getElementById('tutorials-container');
+            if (!videos) return;
+            container.innerHTML = videos.map((v, i) => `
+                <div class="group" data-aos="zoom-in" data-aos-delay="${i * 100}">
+                    <div class="rounded-3xl overflow-hidden aspect-video shadow-xl border-4 border-white dark:border-gray-800 relative">
+                        <iframe class="w-full h-full absolute top-0 left-0" src="https://www.youtube.com/embed/${v.id}" allowfullscreen></iframe>
+                    </div>
+                    <div class="mt-4 px-2">
+                        <span class="bg-primary/10 text-primary text-[10px] px-3 py-1 rounded-full font-black uppercase">${v.category}</span>
+                        <h4 class="text-lg font-black mt-2">${v.title}</h4>
+                        <p class="text-gray-500 font-bold text-sm mt-1">${v.subtitle}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFAQ(faqs) {
+            const container = document.getElementById('faq-container');
+            if (!faqs) return;
+            container.innerHTML = faqs.map((f, i) => `
+                <div class="bg-white dark:bg-dark-card rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden mb-4 shadow-sm hover:shadow-md transition-all" data-aos="fade-up">
+                    <button class="w-full px-6 py-5 text-right flex justify-between items-center font-black text-lg hover:bg-gray-50 dark:hover:bg-dark transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span>${f.question}</span>
+                        <i class="fas fa-chevron-down text-primary text-sm"></i>
+                    </button>
+                    <div class="hidden px-6 py-5 border-t border-gray-50 dark:border-gray-800 bg-gray-50 dark:bg-dark/40 text-base font-bold text-slate-500 leading-relaxed animate__animated animate__fadeIn">
+                        ${f.answer}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getMockupFeatures() {
+            return [
+                { title: "أداء فائق للبيع", icon: "fas fa-bolt", description: "أسرع عملية كاشير ممكنة لتجنب الازدحام في متجرك." },
+                { title: "يعمل أوفلاين", icon: "fas fa-link-slash", description: "استقرار تام في العمل حتى بدون إنترنت، والمزامنة تتم تلقائياً." }
+            ];
+        }
+
+        function getMockupFAQ() {
+            // شلت حوار الضريبة هنا خالص
+            return [
+                { question: "كيف يمكنني تثبيت التطبيق على الويندوز؟", answer: "ببساطة حمل ملف الـ .exe من قسم التحميل وقم بتشغيله، سيقوم النظام بتهيئة نفسه تلقائياً." }
+            ];
+        }
+    </script>
+</body>
+
+</html>
