@@ -5,13 +5,13 @@
         "version": "1.0.0",
         "force_update": false,
         "message": "تمت إضافة ميزات جديدة وإصلاح أخطاء سابقة. يرجى التحديث الآن لضمان استقرار المبيعات.",
-        "download_url": "https://github.com/DrFat7y/Zovix-POS/releases/download/Zovix/Zovix.POS.apk"
+        "download_url": ""
       },
       "windows": {
         "version": "1.0.0",
         "force_update": true,
         "message": "تحديث هام لنظام الويندوز لضمان استقرار العمليات.",
-        "download_url": "https://github.com/DrFat7y/Zovix-POS/releases/download/Zovix/Zovix.POS.Setup.1.0.0.exe"
+        "download_url": ""
       }
     },
     "owner": {
@@ -19,12 +19,13 @@
         "version": "1.0.0",
         "force_update": true,
         "message": "يتوفر تحديث جديد لتطبيق المالك (Zovix POS) بتصميم محسن للتقارير.",
-        "download_url": "https://github.com/DrFat7y/Zovix-POS/releases/download/Zovix/Zovix.Owner.apk"
+        "download_url": ""
       }
     }
   }
 
 }
+
 
 
 
