@@ -617,11 +617,11 @@
                         <div class="tier-name">الباقة البرونزية</div>
                         <div class="tier-price">
                             <div style="margin-bottom: 5px;">
-                                <span class="price-value">149</span>
-                                <span class="price-sub">جنيه / شهرياً</span>
+                                <span class="price-value" id="price-bronze-mo">149</span>
+                                <span class="price-sub" id="currency-bronze-mo">جنيه / شهرياً</span>
                             </div>
-                            <div class="price-yearly">أو 1499 / سنوياً</div>
-                            <div class="savings-badge">وفر شهرين</div>
+                            <div class="price-yearly" id="price-bronze-yr">أو 1499 / سنوياً</div>
+                            <div class="savings-badge" id="save-bronze">وفر شهرين</div>
                         </div>
                     </div>
                     <ul class="feature-list">
@@ -673,11 +673,11 @@
                         <div class="tier-name">الباقة الذهبية</div>
                         <div class="tier-price">
                             <div style="margin-bottom: 5px;">
-                                <span class="price-value">349</span>
-                                <span class="price-sub">جنيه / شهرياً</span>
+                                <span class="price-value" id="price-gold-mo">349</span>
+                                <span class="price-sub" id="currency-gold-mo">جنيه / شهرياً</span>
                             </div>
-                            <div class="price-yearly">أو 3199 / سنوياً</div>
-                            <div class="savings-badge">وفر 1000 جنيه</div>
+                            <div class="price-yearly" id="price-gold-yr">أو 3199 / سنوياً</div>
+                            <div class="savings-badge" id="save-gold">وفر 1000 جنيه</div>
                         </div>
                     </div>
                     <ul class="feature-list">
@@ -735,11 +735,11 @@
                         <div class="tier-name">الباقة الماسية</div>
                         <div class="tier-price">
                             <div style="margin-bottom: 5px;">
-                                <span class="price-value">699</span>
-                                <span class="price-sub">جنيه / شهرياً</span>
+                                <span class="price-value" id="price-diamond-mo">699</span>
+                                <span class="price-sub" id="currency-diamond-mo">جنيه / شهرياً</span>
                             </div>
-                            <div class="price-yearly">أو 6999 / سنوياً</div>
-                            <div class="savings-badge">وفر 1400 جنيه</div>
+                            <div class="price-yearly" id="price-diamond-yr">أو 6999 / سنوياً</div>
+                            <div class="savings-badge" id="save-diamond">وفر 1400 جنيه</div>
                         </div>
                     </div>
                     <ul class="feature-list">
@@ -847,10 +847,8 @@
         </div>
     </footer>
 
-    <!-- New & Improved MOBILE MENU SIDE DRAWER (Outside Nav) -->
     <div id="mobileMenu"
         class="fixed inset-y-0 right-0 w-[85%] max-w-[400px] bg-white dark:bg-[#121212] z-[99999] flex flex-col transition-transform duration-500 translate-x-full lg:hidden shadow-2xl">
-        <!-- Menu Header -->
         <div
             class="p-6 bg-primary dark:bg-primary/20 text-white dark:text-primary flex justify-between items-center shadow-lg">
             <div class="flex items-center gap-3">
@@ -863,7 +861,6 @@
             </button>
         </div>
 
-        <!-- Menu Links -->
         <div class="flex-1 py-10 px-6 space-y-4 overflow-y-auto">
             <a href="#features"
                 class="flex items-center gap-5 px-8 py-5 rounded-3xl bg-gray-50 dark:bg-white/5 text-xl font-black text-slate-800 dark:text-white transition-all active:scale-95 border-2 border-transparent hover:border-primary/30">
@@ -883,7 +880,6 @@
             </a>
         </div>
 
-        <!-- Menu Footer -->
         <div class="p-8 bg-gray-50 dark:bg-white/5 border-t dark:border-white/10">
             <a href="https://wa.me/201514179735" target="_blank"
                 class="flex items-center justify-center gap-4 bg-[#25D366] text-white w-full py-5 rounded-3xl font-black text-xl shadow-xl shadow-green-500/30 active:scale-95 transition-transform">
@@ -892,7 +888,6 @@
         </div>
     </div>
 
-    <!-- Backdrop Overlay -->
     <div id="menuBackdrop"
         class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[99998] hidden lg:hidden transition-opacity duration-500 opacity-0">
     </div>
@@ -961,7 +956,61 @@
         async function initPage() {
             loadDownloads();
             loadContent();
+            updatePricingByLocation(); // NEW: استدعاء دالة تحديث السعر حسب الدولة
         }
+
+        // --- NEW FUNCTION: تحديث الأسعار حسب دولة الزائر ---
+        async function updatePricingByLocation() {
+            try {
+                // استخدام API مجاني لمعرفة الدولة
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+
+                // الأسعار الافتراضية (مصر - بالجنيه)
+                const prices = {
+                    bronze: { mo: 149, yr: 1499, save: 'وفر شهرين' },
+                    gold: { mo: 349, yr: 3199, save: 'وفر 1000 جنيه' },
+                    diamond: { mo: 699, yr: 6999, save: 'وفر 1400 جنيه' }
+                };
+
+                let isUSD = false;
+
+                // إذا كان الزائر من خارج مصر (EG)
+                if (data.country_code !== 'EG') {
+                    // أسعار التجزئة الدولية (بالدولار) التي اتفقنا عليها
+                    prices.bronze = { mo: 10, yr: 120, save: 'وفر 2 أشهر' };
+                    prices.gold = { mo: 20, yr: 240, save: 'وفر 2 أشهر' };
+                    prices.diamond = { mo: 35, yr: 420, save: 'وفر 2 أشهر' };
+                    isUSD = true;
+                }
+
+                const currencyMonthlyText = isUSD ? '$ / شهرياً' : 'جنيه / شهرياً';
+                const currencySymbol = isUSD ? '$' : 'جنيه';
+
+                // تحديث واجهة الباقة البرونزية
+                document.getElementById('price-bronze-mo').innerText = prices.bronze.mo;
+                document.getElementById('currency-bronze-mo').innerText = currencyMonthlyText;
+                document.getElementById('price-bronze-yr').innerText = `أو ${prices.bronze.yr} ${currencySymbol} / سنوياً`;
+                document.getElementById('save-bronze').innerText = prices.bronze.save;
+
+                // تحديث واجهة الباقة الذهبية
+                document.getElementById('price-gold-mo').innerText = prices.gold.mo;
+                document.getElementById('currency-gold-mo').innerText = currencyMonthlyText;
+                document.getElementById('price-gold-yr').innerText = `أو ${prices.gold.yr} ${currencySymbol} / سنوياً`;
+                document.getElementById('save-gold').innerText = prices.gold.save;
+
+                // تحديث واجهة الباقة الماسية
+                document.getElementById('price-diamond-mo').innerText = prices.diamond.mo;
+                document.getElementById('currency-diamond-mo').innerText = currencyMonthlyText;
+                document.getElementById('price-diamond-yr').innerText = `أو ${prices.diamond.yr} ${currencySymbol} / سنوياً`;
+                document.getElementById('save-diamond').innerText = prices.diamond.save;
+
+            } catch (error) {
+                // في حالة فشل الاتصال بالـ API أو وجود حظر، ستبقى الأسعار بالجنيه كما هي بالـ HTML
+                console.warn('لم نتمكن من تحديد الدولة، سيتم عرض الأسعار بالجنيه المصري.', error);
+            }
+        }
+        // --------------------------------------------------
 
         async function loadDownloads() {
             try {
@@ -1111,4 +1160,3 @@
 </body>
 
 </html>
-
