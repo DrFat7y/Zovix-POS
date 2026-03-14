@@ -2,16 +2,16 @@
   "apps": {
     "cashier": {
       "android": {
-        "version": "1.0.0",
-        "force_update": false,
+        "version": "1.2.0",
+        "force_update": true,
         "message": "تمت إضافة ميزات جديدة وإصلاح أخطاء سابقة. يرجى التحديث الآن لضمان استقرار المبيعات.",
-        "download_url": ""
+        "download_url": "https://github.com/DrFat7y/Zovix-POS/releases/download/Zovix/Zovix.POS.1.2.0.apk"
       },
       "windows": {
-        "version": "1.0.0",
+        "version": "1.2.0",
         "force_update": true,
         "message": "تحديث هام لنظام الويندوز لضمان استقرار العمليات.",
-        "download_url": ""
+        "download_url": "https://github.com/DrFat7y/Zovix-POS/releases/download/Zovix/Zovix.POS.Setup.1.2.0.exe"
       }
     },
     "owner": {
